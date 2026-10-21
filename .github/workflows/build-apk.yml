@@ -21,7 +21,7 @@ jobs:
         uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '21'
 
       # ubuntu-latest runners ship with the Android SDK pre-installed
       # (ANDROID_HOME already set), so no separate SDK install step is needed.
