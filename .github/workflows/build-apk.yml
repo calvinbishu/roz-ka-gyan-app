@@ -55,8 +55,10 @@ jobs:
         run: |
           python3 - <<'EOF'
           data = open('/tmp/gradle.log', 'r', errors='replace').read()
-          tail = data[-3500:]
-          esc = tail.replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
+          marker = 'FAILURE: Build failed'
+          idx = data.find(marker)
+          snippet = data[idx:idx + 3800] if idx != -1 else data[-3800:]
+          esc = snippet.replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
           print(f"::error::{esc}")
           EOF
 
